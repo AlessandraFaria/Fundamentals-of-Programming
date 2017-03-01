@@ -1,0 +1,287 @@
+
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Ex32labex3
+{
+    class Testa_Contas
+    {
+        static Conta chamaConta;
+        public static void menu()
+        {
+            Console.Clear();
+            Console.WriteLine("Gerencia de contas");
+            Console.WriteLine("----------------------------------------------");
+            Console.WriteLine("1. Criar uma nova conta ");
+            Console.WriteLine("2. Excluir uma conta existente");
+            Console.WriteLine("3. Depositar em uma conta");
+            Console.WriteLine("4. Sacar de uma conta");
+            Console.WriteLine("5. Imprimir saldo de uma conta");
+            Console.WriteLine("6. Imprimir relação das contas existentes informando os dados das contas ");
+            Console.WriteLine("7. Finalizar o programa");
+
+        }
+        const int MAXCONTAS = 100;
+        static Conta[] vetContas = new Conta[MAXCONTAS];
+        static void Main(string[] args)
+        {
+                int cont = 0;                 
+                int op;                     
+                do
+                {
+                    menu();
+                    Console.Write("\nEntre com a opcao: ");
+                    op = int.Parse(Console.ReadLine());
+                    switch (op)
+                    {
+
+                        case 1:
+                            Console.Clear();
+                            Console.WriteLine("1. Criar uma nova conta ");
+                            Console.WriteLine("----------------------------------------------");
+                            cont++;
+                            Console.WriteLine("Digite o nome do titular");
+                            string nomeTitular = Console.ReadLine();
+                            Console.WriteLine("Digite o Tipo de conta : corrente (1), poupança (2), investimento (3)");
+                            int TipoConta = Convert.ToInt32(Console.ReadLine());
+                            if ((TipoConta==1)||(TipoConta==2)||(TipoConta==3))
+                            {
+                                 chamaConta = new Conta(nomeTitular, 1,TipoConta,cont);
+                                Console.WriteLine("Conta criada com sucesso - Digite qualquer tecla para sair.");
+                            }
+                            else { Console.WriteLine("Esse tipo de conta não existe - Digite qualquer tecla para sair."); }
+                            Console.ReadKey();
+                            break;
+
+                        case 2:
+                            Console.Clear();
+                            Console.WriteLine("2. Excluir uma conta existente");
+                            Console.WriteLine("----------------------------------------------");
+                           // ExcluirConta(cont);
+                            Console.ReadKey();
+                            break;
+
+                        case 3:
+                            fazDeposito(cont);
+                            break;
+
+                        case 4:
+                             fazSaque(cont);  
+                            break;
+
+                        case 5:
+                            ImprimeSaldo(cont); 
+                            break;
+                        case 6:
+                            Console.Clear();
+                            Console.WriteLine("6. Imprimir relação das contas existentes informando os dados das contas ");
+                            Console.WriteLine("----------------------------------------------");
+                            RelacaoNContas(cont);
+                            Console.ReadKey();
+                            break;
+                        case 7:
+                            Console.Clear();
+                            Console.WriteLine("\n 7. Finalizar o programa \n");
+                            Console.WriteLine("----------------------------------------------");  
+                            break;
+
+                        default: break;
+                    } 
+                } while (op != 7);   
+
+                Console.WriteLine("\n Programa terminado");
+                Console.WriteLine("\n Aperte qq tecla para sair");
+                Console.ReadKey();
+            }
+
+        static void fazDeposito(int quantasContas)
+        {
+            int numero_conta;
+            double credito;
+            Console.Clear();
+            Console.WriteLine("Deposito em conta");
+            Console.WriteLine("----------------------------------------------");
+            Console.Write("Entre com o numero da conta: ");
+            numero_conta = int.Parse(Console.ReadLine());
+            if (numero_conta > 0 && numero_conta <= quantasContas)
+            {
+                Console.Write("Digite o valor a ser depositado na conta:");
+                credito = double.Parse(Console.ReadLine());    
+                chamaConta.Deposita(credito, numero_conta);
+                Console.WriteLine("Depósito realizado.");
+            }
+            else
+            {
+                Console.WriteLine("Conta invalida, operacao nao efetuada! ");
+            }
+            Console.WriteLine("Digite qualquer tecla para voltar para o menu.");
+            Console.ReadKey();
+
+        }
+        
+        static void fazSaque(int quantasContas)
+        {
+            int numero_conta;
+            double quantia;
+            double test_result;
+            Console.Clear();
+            Console.WriteLine("Saque em conta");
+            Console.WriteLine("----------------------------------------------");
+            Console.Write("Entre com o numero da conta: ");
+            numero_conta = int.Parse(Console.ReadLine());
+            if (numero_conta > 0 && numero_conta <= quantasContas)
+            {
+                Console.Write("Digite o valor a ser depositado na conta:");
+                quantia = double.Parse(Console.ReadLine());
+
+                test_result = chamaConta.Sacar(quantia, numero_conta);
+                if (test_result == quantia)
+                    Console.WriteLine("Saque realizado no valor " + quantia);
+                else
+                    Console.WriteLine(" SALDO INSUFICIENTE: RETIRADA NÃO EFETUADA! ");
+            }
+            else
+            {
+                Console.WriteLine("Conta invalida, operacao nao efetuada! ");
+            }
+            Console.WriteLine("Digite qualquer tecla para voltar para o menu.");
+            Console.ReadKey();
+        }
+
+        static void ImprimeSaldo(int quantasContas)
+        {
+            int numero_conta; 
+            Console.Clear();
+            Console.WriteLine("Imprimir saldo de uma conta");
+            Console.WriteLine("----------------------------------------------");
+            Console.Write("Entre com o numero da conta: ");
+            numero_conta = int.Parse(Console.ReadLine());
+            if (numero_conta > 0 && numero_conta <= quantasContas)
+            {
+                Console.WriteLine(" SALDO : " + chamaConta.SaldoImprime(numero_conta));
+                Console.WriteLine("Saldo impresso.");
+            }
+            else
+            {
+                Console.WriteLine("Conta invalida, operacao nao efetuada! ");
+            }
+            Console.WriteLine("Digite qualquer tecla para voltar para o menu.");
+            Console.ReadKey();
+
+        }
+
+        static void RelacaoNContas(int quantasContas)
+        {
+            int numero_conta;
+          // Conta chamaConta;
+            Console.Clear();
+            Console.WriteLine("Imprimir relação da conta");
+            Console.WriteLine("----------------------------------------------"); 
+            for (numero_conta = 1; numero_conta <= quantasContas;numero_conta++)
+            {
+                Console.WriteLine(" Informações : Número da conta {0} , Titular {1}", chamaConta.NumConta,chamaConta.Titular);
+                Console.WriteLine("Informações impressas.");
+            }
+            Console.WriteLine("Digite qualquer tecla para voltar para o menu.");
+            Console.ReadKey();
+        }
+        //static void ExcluirConta(int quantasContas)
+        //{
+        //    int cc;
+        //    Conta aux;
+        //    Console.Clear();
+        //    Console.WriteLine("Excluir Conta");
+        //    Console.WriteLine("----------------------------------------------");
+        //    for (cc = 1; cc <= quantasContas; cc++)
+        //    {
+        //        aux = vetContas[cc - 1];    //copia dados do vetor
+        //        aux.numConta=0;
+        //        aux.titular=0;
+        //        Console.WriteLine("Informações impressas.");
+        //    }
+        //    Console.WriteLine("Digite qualquer tecla para voltar para o menu.");
+        //    Console.ReadKey();
+        //}
+
+    }
+
+
+    class Conta {
+        private String titular;
+        private int agencia; 
+        private int numConta; 
+        private int tipoConta; 
+        private double saldo;
+        double[] vetContas = new double[100];
+
+        public Conta(String nome, int ag, int tipo ,int nuncont){//construtor
+        titular = nome;
+	    agencia = ag;
+        tipoConta = tipo;
+        numConta = nuncont;
+        }
+
+        public void Deposita(double credito,int numContas)
+        {
+            saldo += credito;
+            vetContas[numContas - 1]=saldo;
+        }
+
+        public double Sacar(double quantia, int numContas)
+        {
+            if (saldo >= quantia)
+            {
+                saldo -= quantia;
+                vetContas[numContas - 1] = saldo;
+                return quantia;
+            }
+            else
+            {
+                return 0;
+            }
+        }
+
+        public double Saldo
+        {
+            get { return saldo; }
+            set
+            {
+                if (value > 0.0) saldo = value;
+                else saldo = 0.0;
+            }
+        }
+
+        public double SaldoImprime(int numContas)
+        {
+            return vetContas[numContas - 1];
+        }
+
+        public int NumConta
+        {
+            get { return numConta; }
+            set
+            {
+                if (value > 0) numConta = value;
+                else numConta = 0;
+            }
+        }
+        public string Titular
+        {
+            get { return titular; }
+        }
+
+        //public string Relacao(int numContas)
+        //{
+        //    for (int j=0;j<numConta;j++)
+        //    {
+        //        return Titular;
+        //    }
+            
+        //}
+    }
+
+    }
