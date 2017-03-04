@@ -10,7 +10,7 @@ namespace Ex32labex3
     class Testa_Contas
     {
         const int MAXCONTAS = 100;
-        public static Conta[] vetContas = new Conta[MAXCONTAS];
+        static Conta[] vetContas = new Conta[MAXCONTAS];
 
         static Conta chamaConta;
 
@@ -32,16 +32,16 @@ namespace Ex32labex3
         static void Main(string[] args)
         {
             int cont = 1;
-            int op;
+            string op;
             do
             {
                 menu();
                 Console.Write("\nEntre com a opcao: ");
-                op = int.Parse(Console.ReadLine());
+                op = Console.ReadLine();
                 switch (op)
                 {
 
-                    case 1:
+                    case "1":
                         Console.Clear();
                         Console.WriteLine("1. Criar uma nova conta ");
                         Console.WriteLine("----------------------------------------------");
@@ -62,33 +62,33 @@ namespace Ex32labex3
                         Console.ReadKey();
                         break;
 
-                    case 2:
+                    case "2":
                         Console.Clear();
                         Console.WriteLine("2. Excluir uma conta existente");
                         Console.WriteLine("----------------------------------------------");
-                         ExcluirConta(cont);
+                        ExcluirConta(cont);
                         Console.ReadKey();
                         break;
 
-                    case 3:
+                    case "3":
                         fazDeposito(cont);
                         break;
 
-                    case 4:
+                    case "4":
                         fazSaque(cont);
                         break;
 
-                    case 5:
+                    case "5":
                         ImprimeSaldo(cont);
                         break;
-                    case 6:
+                    case "6":
                         Console.Clear();
                         Console.WriteLine("6. Imprimir relação das contas existentes informando os dados das contas ");
                         Console.WriteLine("----------------------------------------------");
                         RelacaoNContas(cont);
                         Console.ReadKey();
                         break;
-                    case 7:
+                    case "7":
                         Console.Clear();
                         Console.WriteLine("\n 7. Finalizar o programa \n");
                         Console.WriteLine("----------------------------------------------");
@@ -99,7 +99,7 @@ namespace Ex32labex3
                         Console.WriteLine("Opção Inválida.");
                         break;
                 }
-            } while (op != 7);
+            } while (op != "7");
 
             Console.WriteLine("\n Programa terminado");
             Console.WriteLine("\n Aperte qq tecla para sair");
@@ -117,15 +117,23 @@ namespace Ex32labex3
             numero_conta = int.Parse(Console.ReadLine());
             if (numero_conta > 0 && numero_conta <= quantasContas)
             {
-                Console.Write("Digite o valor a ser depositado na conta:");
-                credito = double.Parse(Console.ReadLine());
-                if (credito>0)
+                if (vetContas[numero_conta - 1].Inativa == false)
                 {
-                    chamaConta.Deposita(credito, numero_conta, vetContas);
-                    Console.WriteLine("Depósito realizado.");
+                    Console.Write("Digite o valor a ser depositado na conta:");
+                    credito = double.Parse(Console.ReadLine());
+                    if (credito > 0)
+                    {
+                        chamaConta.Deposita(credito, numero_conta, vetContas);
+                        Console.WriteLine("Depósito realizado.");
+                    }
+                    else
+                    {
+                        Console.WriteLine("Valor negativo, operacao nao efetuada! ");
+                    }
                 }
-                else {
-                    Console.WriteLine("Valor negativo, operacao nao efetuada! ");
+                else
+                {
+                    Console.WriteLine("Conta Inativa");
                 }
             }
             else
@@ -149,14 +157,21 @@ namespace Ex32labex3
             numero_conta = int.Parse(Console.ReadLine());
             if (numero_conta > 0 && numero_conta <= quantasContas)
             {
-                Console.Write("Digite o valor a ser depositado na conta:");
-                quantia = double.Parse(Console.ReadLine());
+                if (vetContas[numero_conta - 1].Inativa == false)
+                {
+                    Console.Write("Digite o valor a ser depositado na conta:");
+                    quantia = double.Parse(Console.ReadLine());
 
-                test_result = chamaConta.Sacar(quantia, numero_conta, vetContas);
-                if (test_result == quantia)
-                    Console.WriteLine("Saque realizado no valor " + quantia);
+                    test_result = chamaConta.Sacar(quantia, numero_conta, vetContas);
+                    if (test_result == quantia)
+                        Console.WriteLine("Saque realizado no valor " + quantia);
+                    else
+                        Console.WriteLine(" SALDO INSUFICIENTE: RETIRADA NÃO EFETUADA! ");
+                }
                 else
-                    Console.WriteLine(" SALDO INSUFICIENTE: RETIRADA NÃO EFETUADA! ");
+                {
+                    Console.WriteLine("Conta Inativa");
+                }
             }
             else
             {
@@ -198,24 +213,23 @@ namespace Ex32labex3
 
             for (numero_conta = 1; numero_conta < quantasContas; numero_conta++)
             {
-                //criar verificação de estado 
-
-
                 if (vetContas[numero_conta - 1].Inativa == false)
                 {
                     Console.WriteLine(" Informações : Número da conta {0} , Titular {1}", vetContas[numero_conta - 1].NumConta, vetContas[numero_conta - 1].Titular);
                     Console.WriteLine("Informações impressas.");
                 }
-                else {
+                else
+                {
                     Console.WriteLine("Conta Inativa");
                 }
             }
             Console.WriteLine("Digite qualquer tecla para voltar para o menu.");
             Console.ReadKey();
         }
+       
         static void ExcluirConta(int quantasContas)
         {
-            int numero_conta;            
+            int numero_conta;
             Console.Clear();
             Console.WriteLine("Excluir Conta");
             Console.WriteLine("----------------------------------------------");
@@ -291,7 +305,7 @@ namespace Ex32labex3
             return vetContas[numContas - 1].saldo;
         }
 
-        public bool Excluir (int numContas, Conta[] vetContas)
+        public bool Excluir(int numContas, Conta[] vetContas)
         {
             vetContas[numContas - 1].inativa = true;
             return vetContas[numContas - 1].inativa;
@@ -307,7 +321,8 @@ namespace Ex32labex3
             }
         }
 
-        public bool Inativa {
+        public bool Inativa
+        {
             get { return inativa; }
 
         }
@@ -316,7 +331,7 @@ namespace Ex32labex3
         {
             get { return titular; }
         }
- 
+
     }
 
 }
