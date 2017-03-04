@@ -213,23 +213,6 @@ namespace Ex32labex3
             Console.WriteLine("Digite qualquer tecla para voltar para o menu.");
             Console.ReadKey();
         }
-        //static void ExcluirConta(int quantasContas)
-        //{
-        //    int cc;
-        //    Conta aux;
-        //    Console.Clear();
-        //    Console.WriteLine("Excluir Conta");
-        //    Console.WriteLine("----------------------------------------------");
-        //    for (cc = 1; cc <= quantasContas; cc++)
-        //    {
-        //        aux = vetContas[cc - 1];    //copia dados do vetor
-        //        aux.numConta = 0;
-        //        aux.titular = 0;
-        //        Console.WriteLine("Informações impressas.");
-        //    }
-        //    Console.WriteLine("Digite qualquer tecla para voltar para o menu.");
-        //    Console.ReadKey();
-        //}
         static void ExcluirConta(int quantasContas)
         {
             int numero_conta;            
