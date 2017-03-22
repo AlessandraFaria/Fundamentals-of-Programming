@@ -13,13 +13,14 @@ namespace copia_texto_2{
             string[] vetor1 = new string[20];
             string[] vetor2 = new string[20];
             string linha;
+            //string resultado = linha.ToUpper();
             string nomeEntrada=args[0];
 
             FileInfo fi = new FileInfo(args[0]);
             FileInfo fisai = new FileInfo(args[1]);
             Console.WriteLine("Alessandra Faria , Alaene ,victor souza , Igor santana ...");
             Console.WriteLine("Arquivo de Texto de entrada: " + fi.Name);
-            Console.WriteLine("Arquivo de Texto de saída: " + fisai.Name);
+            Console.WriteLine("Arquivo de Texto de saÃ­da: " + fisai.Name);
 
             StreamWriter entrada = new StreamWriter(args[0]); //abrir o arquivo origem;
             StreamWriter saida = new StreamWriter(args[1]); //abre arquivo de destino 
@@ -43,8 +44,9 @@ namespace copia_texto_2{
                 linha = entrada2.ReadLine();     //ler 1a linha
                 while (linha != null)           //enquanto houver dados...
                 {
-                    linha=text.ToUpper();
-                    vetor2[j] = linha; //Formatar
+                   // linha = linha.ToUpper();
+                    string linha2 = linha.ToUpper();
+                    vetor2[j] = linha2; //Formatar
                     saida.WriteLine(vetor2[j]);    //escreve no arquivo
                     linha = entrada2.ReadLine(); //ler proxima linha
                     j++;
