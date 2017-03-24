@@ -1,7 +1,5 @@
 ## 2.9
 Fazer um programa codificado em C# que atenda os seguintes requisitos e especificações:
-- Utilize, obrigatoriamente, como ponto de partida o programa do exemplo 9, ou seja, deve-se
-utilizar obrigatoriamente classes e métodos para arquivos texto.
 - O programa deve receber como parâmetros na linha de comando (LC) os nomes dos arquivos
 de entrada e saída, os quais devem ser mostrados na tela.
 - Deve ler pelo teclado e armazenar em um vetor (na memória principal) uma sequência de letras
