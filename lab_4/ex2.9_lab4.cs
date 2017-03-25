@@ -3,18 +3,19 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.IO;
-namespace copia_texto_2{
-
-    class copia_texto_linha_s116
+namespace copia_texto_2
 {
 
-    static void Main(string[] args) {
-           
+    class copia_texto_linha_s116
+    {
+
+        static void Main(string[] args)
+        {
+
             string[] vetor1 = new string[20];
             string[] vetor2 = new string[20];
-            string linha;
-            //string resultado = linha.ToUpper();
-            string nomeEntrada=args[0];
+            string linha, linhaLeituraSaida;
+            string nomeEntrada = args[0];
 
             FileInfo fi = new FileInfo(args[0]);
             FileInfo fisai = new FileInfo(args[1]);
@@ -39,12 +40,14 @@ namespace copia_texto_2{
                 textoEscrito = Console.ReadLine();
             }
             entrada.Close();
+            Console.Write("Caracteres digitados ");
             StreamReader entrada2 = new StreamReader(nomeEntrada); //abrir o arquivo origem
-            for (int j = 0; j < fi.Length; j++){
+            for (int j = 0; j < fi.Length; j++)
+            {
                 linha = entrada2.ReadLine();     //ler 1a linha
                 while (linha != null)           //enquanto houver dados...
                 {
-                   // linha = linha.ToUpper();
+                    Console.WriteLine(linha + "");
                     string linha2 = linha.ToUpper();
                     vetor2[j] = linha2; //Formatar
                     saida.WriteLine(vetor2[j]);    //escreve no arquivo
@@ -56,7 +59,21 @@ namespace copia_texto_2{
             entrada2.Close();
             saida.Close();
 
+            StreamReader saidaLeitura = new StreamReader(args[1]);
+            Console.Write("Caracteres convertidos ");
+            for (int j = 0; j < fi.Length; j++)
+            {
+                linhaLeituraSaida = saidaLeitura.ReadLine(); //ler 1a linha
+                while (linhaLeituraSaida != null)           //enquanto houver dados...
+                {
+                    Console.WriteLine(linhaLeituraSaida+ "");
+                    linhaLeituraSaida = saidaLeitura.ReadLine(); //ler proxima linha
+                    j++;
+                }
+            }
+            saida.Close();
+
 
         }
-}
+    }
 }
