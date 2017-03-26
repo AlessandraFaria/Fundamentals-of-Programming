@@ -16,7 +16,7 @@ namespace copia_texto_2
             nomesaida = args[1];
             char[] vetor1 = new char[20];
             char[] vetor2 = new char[20];
-     //     char linha;
+            int  i=0;
 
             Stream fileEntrada = File.Open(args[0], FileMode.Open); // abrir arquivo
             Stream fiSaida = File.Open(args[1], FileMode.Create); // criar arquivo
@@ -31,25 +31,24 @@ namespace copia_texto_2
             Console.WriteLine("Entre com os caracteres:");
             string verificaTexto = Console.ReadLine();
             char textoEscrito = Convert.ToChar(verificaTexto);
+         
             while (verificaTexto != "*")
             {
                 textoEscrito = Convert.ToChar(verificaTexto);
-                for (int i = 0; i < 1; i++)
-                {
-                    vetor1[i] = textoEscrito;
-                    if (vetor1[i] < 0) break; // erro no arquivo
-                    if (vetor1[i] == 0) break; // fim de arquivo
-                    entrada.Write(vetor1[i]);
 
-                }
+                vetor1[i] = textoEscrito;
+                if (vetor1[i] < 0) break; // erro no arquivo
+                if (vetor1[i] == 0) break; // fim de arquivo
+                entrada.Write(vetor1[i]);
+
+                i++;
+
                 Console.Write("");
                 verificaTexto = Console.ReadLine();
             }
             entrada.Close();
 
-            //Stream fileEntrada2 = File.Open(args[0], FileMode.Open);
-            //BinaryReader entrada2 = new BinaryReader(fileEntrada2);
-            for (int j = 0; j < 1; j++)
+            for (int j = 0; j < 20; j++)
             {
                 vetor2[j] = vetor1[j];
                 if (vetor1[j] < 0) break; // erro no arquivo
@@ -57,9 +56,8 @@ namespace copia_texto_2
                 saida.Write(vetor2[j]);
 
             }
-           // entrada2.Close();
+           
             saida.Close();
-
 
 
 
