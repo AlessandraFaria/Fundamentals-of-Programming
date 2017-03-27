@@ -1,4 +1,20 @@
-
+//
+// nome do programa: ex2.6_lab4.cs
+//
+// programadores: Alessandra Faria Abreu ,Alaene , Igor santana, Victor , Angelo diniz
+// data: data:26/03/2017
+// entrada(s):nome do arquivo de entrada ja existente e nome do arquivo de saida a ser criado 
+// saida(s): imprime os caracteres digitados , ã leitura do arquivo de entrada e a leitura do arquivo de saida
+// ex2.6_lab4.exe origem.txt saida.txt
+//Descrição -recebe nome de entrada e nome de saida por args
+//-lê os valores a serem armazenados e grava em um vetor 
+//-grava o vetor no arquivo de entrada
+//-salva(fechar)
+//-abri o arquivo de entrada lê ele e grava em um vetor
+//-converte para maiusculas o valor do novo vetor
+//-grava o vetor convertido no arquivo de saída
+//-lê o arquivo de saída
+//TELA:
 //Programa de teste do sistema de arquivos
 //Alunos Sicrano de tal e Fulano José
 //Arquivo texto de entrada: entrada.txt
