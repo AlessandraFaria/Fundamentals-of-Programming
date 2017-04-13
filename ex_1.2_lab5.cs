@@ -19,10 +19,10 @@ namespace lab_5._1_ex12
             Console.WriteLine("Menu");
             Console.WriteLine("1. Incluir um contribuinte.");
             Console.WriteLine("2. Excluir um contribuinte.");
-            Console.WriteLine("3. Exibir os dados de um contribuinte: CPF/CNPJ, nome, endereço e salario/faturamento");
+            Console.WriteLine("3. Exibir os dados de um contribuinte: CPF/CNPJ, nome, endereÃ§o e salario/faturamento");
             Console.WriteLine("4. Calcular e exibir o imposto a ser pago por um contribuinte.");
-            Console.WriteLine("5. Imprimir uma relação dos contribuintes Pessoa Física cadastrados, mostrando os dados:CPF, nome e endereço.");
-            Console.WriteLine("6. Imprimir uma relação dos contribuintes Pessoa Jurídica cadastrados, mostrando os dados: CNPJ, nome e endereço.");
+            Console.WriteLine("5. Imprimir uma relaÃ§Ã£o dos contribuintes Pessoa FÃ­sica cadastrados, mostrando os dados:CPF, nome e endereÃ§o.");
+            Console.WriteLine("6. Imprimir uma relaÃ§Ã£o dos contribuintes Pessoa JurÃ­dica cadastrados, mostrando os dados: CNPJ, nome e endereÃ§o.");
             Console.WriteLine("7. Sair do programa.");
             opcao = Console.ReadLine();
 
@@ -32,6 +32,22 @@ namespace lab_5._1_ex12
                 {
                     case "1":
                         Console.WriteLine("digite o nome do arquivo ");
+                        nomeArq = Console.ReadLine();
+
+                        FileInfo fi = new FileInfo(nomeArq);
+                        StreamReader entrada = new StreamReader(nomeEntrada); //abrir o arquivo para leitura
+
+                        for (int j = 0; j < fi.Length; j++)
+                        {
+                            linha = entrada2.ReadLine();     //ler 1a linha
+                            while (linha != null)           //enquanto houver dados...
+                            {
+                                string[] separa = linha.Split(',');
+                                linha = entrada2.ReadLine(); //ler proxima linha
+                                j++;
+                                Console.WriteLine(vetor2[j]);
+                            }
+                        }
 
                         break;
                 }
@@ -39,10 +55,10 @@ namespace lab_5._1_ex12
                 Console.WriteLine("Menu");
                 Console.WriteLine("1. Incluir um contribuinte.");
                 Console.WriteLine("2. Excluir um contribuinte.");
-                Console.WriteLine("3. Exibir os dados de um contribuinte: CPF/CNPJ, nome, endereço e salario/faturamento");
+                Console.WriteLine("3. Exibir os dados de um contribuinte: CPF/CNPJ, nome, endereÃ§o e salario/faturamento");
                 Console.WriteLine("4. Calcular e exibir o imposto a ser pago por um contribuinte.");
-                Console.WriteLine("5. Imprimir uma relação dos contribuintes Pessoa Física cadastrados, mostrando os dados:CPF, nome e endereço.");
-                Console.WriteLine("6. Imprimir uma relação dos contribuintes Pessoa Jurídica cadastrados, mostrando os dados: CNPJ, nome e endereço.");
+                Console.WriteLine("5. Imprimir uma relaÃ§Ã£o dos contribuintes Pessoa FÃ­sica cadastrados, mostrando os dados:CPF, nome e endereÃ§o.");
+                Console.WriteLine("6. Imprimir uma relaÃ§Ã£o dos contribuintes Pessoa JurÃ­dica cadastrados, mostrando os dados: CNPJ, nome e endereÃ§o.");
                 Console.WriteLine("7. Sair do programa.");
                 opcao = Console.ReadLine();
             }
@@ -67,11 +83,11 @@ namespace lab_5._1_ex12
         protected double salario;
         public PFisica(String n, string end, double sal, String c)
         {
-            // inicialização das varáveis de instância
+            // inicializaÃ§Ã£o das varÃ¡veis de instÃ¢ncia
         }
         public double calcImposto()
         {
-            // Cálculo do imposto
+            // CÃ¡lculo do imposto
         }
     }
     public class PJuridica : Contribuinte
@@ -80,11 +96,11 @@ namespace lab_5._1_ex12
         protected double faturamento;
         public PJuridica(String n, string end, double f, String c)
         {
-            // inicialização das varáveis de instância
+            // inicializaÃ§Ã£o das varÃ¡veis de instÃ¢ncia
         }
         public double calcImposto()
         {
-            // Cálculo do imposto
+            // CÃ¡lculo do imposto
         }
     }
 
