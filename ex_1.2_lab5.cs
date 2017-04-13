@@ -7,13 +7,12 @@ namespace lab_5._1_ex12
 {
     class Menu
     {
-        static PFisica chamaPF = new PFisica();
-        static PJuridica chamaPJ = new PJuridica();
+       // static PFisica chamaPF = new PFisica();
+        //static PJuridica chamaPJ = new PJuridica();
         static void Main(string[] args)
         {
-            int i = 0;
-            int j = 0;
-            string opcao, nomeArq;
+            int j = 0 ;
+            string opcao, nomeArq, linha;
             //double venda;
             Console.WriteLine("Alessandra Faria 573831");
             Console.WriteLine("Menu");
@@ -35,17 +34,16 @@ namespace lab_5._1_ex12
                         nomeArq = Console.ReadLine();
 
                         FileInfo fi = new FileInfo(nomeArq);
-                        StreamReader entrada = new StreamReader(nomeEntrada); //abrir o arquivo para leitura
+                        StreamReader entrada = new StreamReader(nomeArq); //abrir o arquivo para leitura
 
-                        for (int j = 0; j < fi.Length; j++)
+                        for ( j = 0; j < fi.Length; j++)
                         {
-                            linha = entrada2.ReadLine();     //ler 1a linha
+                            linha = entrada.ReadLine();     //ler 1a linha
                             while (linha != null)           //enquanto houver dados...
                             {
                                 string[] separa = linha.Split(',');
-                                linha = entrada2.ReadLine(); //ler proxima linha
+                                linha = entrada.ReadLine(); //ler proxima linha
                                 j++;
-                                Console.WriteLine(vetor2[j]);
                             }
                         }
 
@@ -83,11 +81,34 @@ namespace lab_5._1_ex12
         protected double salario;
         public PFisica(String n, string end, double sal, String c)
         {
-            // inicialização das varáveis de instância
+            cpf = c;
+            salario = sal;
+            base.nome = n;
+            base.endereco = end;
         }
-        public double calcImposto()
+        public override double calcImposto()
         {
-            // Cálculo do imposto
+            double percentual = 0;
+            if ((salario>0)&&(salario<1400))
+            {
+                 percentual = 0;
+            }
+            else if((salario>=1400)&&(salario<2100)){
+                 percentual = salario * 0.1;
+            }
+            else if ((salario >= 2100) && (salario < 2800))
+            {
+                percentual = salario * 0.15;
+            }
+            else if ((salario >= 2800) && (salario < 3600))
+            {
+                percentual = salario * 0.25;
+            }
+            else
+            {
+                percentual = salario * 0.3;
+            }
+            return percentual;
         }
     }
     public class PJuridica : Contribuinte
@@ -96,11 +117,15 @@ namespace lab_5._1_ex12
         protected double faturamento;
         public PJuridica(String n, string end, double f, String c)
         {
-            // inicialização das varáveis de instância
+            cnpj = c;
+            faturamento = f;
+            base.nome = n;
+            base.endereco = end;
         }
-        public double calcImposto()
+        public override double calcImposto()
         {
-            // Cálculo do imposto
+            double percentual = 0.1 * faturamento;
+            return percentual;
         }
     }
 
