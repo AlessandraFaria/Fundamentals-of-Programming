@@ -89,24 +89,24 @@ namespace lab_5._1_ex12
         public override double calcImposto()
         {
             double percentual = 0;
-            if ((salario>0)&&(salario<1400))
+            if ((salario>0)&&(salario<=1400))
             {
                  percentual = 0;
             }
-            else if((salario>=1400)&&(salario<2100)){
-                 percentual = salario * 0.1;
+            else if((salario>1400)&&(salario<=2100)){
+                percentual = (salario * 0.1)-100;
             }
-            else if ((salario >= 2100) && (salario < 2800))
+            else if ((salario > 2100) && (salario <= 2800))
             {
-                percentual = salario * 0.15;
+                percentual = (salario * 0.15)-270;
             }
-            else if ((salario >= 2800) && (salario < 3600))
+            else if ((salario > 2800) && (salario <= 3600))
             {
-                percentual = salario * 0.25;
+                percentual = (salario * 0.25)-500;
             }
             else
             {
-                percentual = salario * 0.3;
+                percentual = (salario * 0.3)-700;
             }
             return percentual;
         }
