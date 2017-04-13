@@ -62,16 +62,18 @@ namespace lab_5._1_ex12
                                   Console.WriteLine("qual o numero do cpf  do contribuinte");
                                   string cpf = Console.ReadLine();
 
-                                lst[k] = new PFisica(nome, 1, endereço,salario,cpf );
-
+                                lst[k] = new PFisica(nome , endereço,salario,cpf );
+                                k++;
                                 break;
+
                                 case 2:
                                 Console.WriteLine("pessoa juridica");
                                 Console.WriteLine("qual o valor do faturamento do contribuinte");
                                 double faturamento = Convert.ToDouble(Console.ReadLine());
                                 Console.WriteLine("qual o numero do cnpj do contribuinte");
                                 string cnpj = Console.ReadLine();
-                                lst[k] = new PJuridica(nome, 1, endereço, faturamento, cnpj);
+                                lst[k] = new PJuridica(nome, endereço, faturamento, cnpj);
+                                k++;
 
                                 break;
                         }   
