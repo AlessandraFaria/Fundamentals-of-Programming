@@ -9,7 +9,9 @@ namespace lab_5._1_ex12
     {
         const int MAXCONTRIBUINTES = 100; // número máximo de contas suportado
         static Contribuinte[] lst = new Contribuinte[MAXCONTRIBUINTES]; //vetor de contribuintes
-                                                                        
+        static PFisica chamaPf = new PFisica();
+        static PJuridica chamaPJ = new PJuridica();
+
         static void Main(string[] args)
         {
             int j = 0,k=0 ;
@@ -106,8 +108,24 @@ namespace lab_5._1_ex12
                                 }
                                 break;
                         }    
-                       
-
+                        break;
+                    case 3:
+                        Console.WriteLine("PF(1) ou PJ (2) ?");
+                        string op4 = Console.ReadLine();
+                        switch (op4)
+                        {
+                            case 1:
+                                Console.WriteLine("Dite o Nome ");
+                                string nome5 = Console.ReadLine();
+                                for (int o = 0; o < lst.Length; o++)
+                                {
+                                    if (lst[o].getNome == nome3)
+                                    {
+                                        Console.WriteLine(lst[o].getNome);
+                                    }
+                                }
+                                break;
+                        }
                         break;
                         
                 }
@@ -134,6 +152,10 @@ namespace lab_5._1_ex12
         {
             return nome;
         }
+        public string getEnd()
+        {
+            return endereco;
+        }
         abstract public double calcImposto();
 
 }
@@ -147,6 +169,10 @@ namespace lab_5._1_ex12
             salario = sal;
             base.nome = n;
             base.endereco = end;
+        }
+        public string getCpf()
+        {
+            return cpf;
         }
         public override double calcImposto()
         {
