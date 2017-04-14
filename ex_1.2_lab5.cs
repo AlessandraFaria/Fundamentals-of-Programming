@@ -76,10 +76,37 @@ namespace lab_5._1_ex12
                                 k++;
 
                                 break;
-                        }   
-                        
+                        }  
+                        break;
+                    case 2:
+                        Console.WriteLine("PF(1) ou PJ (2) ?");
+                        string op3 = Console.ReadLine();
+                        switch (op3)
+                        {
+                            case 1:
+                                Console.WriteLine("Dite o Nome ");
+                                string nome3 = Console.ReadLine();
+                                for (int y=0;y<lst.Length;y++)
+                                {
+                                    if (lst[y].getNome==nome3)
+                                    {
+                                       lst[y] = new PFisica(null, null, 0, null);
+                                    }
+                                }
+                                break;
+                            case 2:
+                                Console.WriteLine("Dite o Nome ");
+                                string nome4 = Console.ReadLine();
+                                for (int y = 0; y < lst.Length; y++)
+                                {
+                                    if (lst[y].getNome == nome4)
+                                    {
+                                        lst[y] = new PJuridica(null, null, 0, null);
+                                    }
+                                }
+                                break;
+                        }    
                        
-
 
                         break;
                         
