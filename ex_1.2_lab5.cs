@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -7,7 +7,7 @@ namespace lab_5._1_ex12
 {
     class Menu
     {
-        
+
         //static PFisica chamaPf = new PFisica();
         //static PJuridica chamaPJ = new PJuridica();
 
@@ -17,30 +17,9 @@ namespace lab_5._1_ex12
             Contribuinte[] lst = new Contribuinte[MAXCONTRIBUINTES]; //vetor de contribuintes
             PFisica[] ctbfisica = new PFisica[MAXCONTRIBUINTES];
             PJuridica[] ctbjuricida = new PJuridica[MAXCONTRIBUINTES];
-            int j = 0, k = 0, h=0;
+            string[] lstCont = new string[MAXCONTRIBUINTES];
+            int j = 0, k = 0, h = 0, b = 0;
             string opcao, nomeArq, linha;
-
-            //Console.WriteLine("digite o nome do arquivo ");
-            //nomeArq = Console.ReadLine();
-            nomeArq = "D:/César/Área de Trabalho/Amor.txt";
-
-            FileInfo fi = new FileInfo(nomeArq);
-
-            StreamReader entrada = new StreamReader(nomeArq); //abrir o arquivo para leitura
-
-            for (j = 0; j < fi.Length; j++)
-            {
-                linha = entrada.ReadLine();     //ler 1a linha
-                while (linha != null)           //enquanto houver dados...
-                {
-                    string[] separa = linha.Split(',');
-                    linha = entrada.ReadLine(); //ler proxima linha
-                    j++;
-                }
-            }
-
-     
-
 
             Console.WriteLine("Alessandra Faria 573831");
             Console.WriteLine("Menu");
@@ -52,6 +31,7 @@ namespace lab_5._1_ex12
             Console.WriteLine("6. Imprimir uma relação dos contribuintes Pessoa Jurídica cadastrados, mostrando os dados: CNPJ, nome e endereço.");
             Console.WriteLine("7. Sair do programa.");
             opcao = Console.ReadLine();
+            Console.Clear();
 
             while (opcao != "7")
             {
@@ -74,6 +54,12 @@ namespace lab_5._1_ex12
                                 Console.WriteLine("qual o numero do cpf  do contribuinte");
                                 string cpf = Console.ReadLine();
                                 ctbfisica[k] = new PFisica(nome, endereço, salario, cpf);
+                                lstCont[b] = "pf";
+                                lstCont[b++] = nome;
+                                lstCont[b++] = endereço;
+                                lstCont[b++] = Convert.ToString(salario);
+                                lstCont[b++] = cpf;
+                                b++;
                                 k++;
                                 break;
 
@@ -84,6 +70,12 @@ namespace lab_5._1_ex12
                                 Console.WriteLine("qual o numero do cnpj do contribuinte");
                                 string cnpj = Console.ReadLine();
                                 ctbjuricida[h] = new PJuridica(nome, endereço, faturamento, cnpj);
+                                lstCont[b] = "pj";
+                                lstCont[b++] = nome;
+                                lstCont[b++] = endereço;
+                                lstCont[b++] = Convert.ToString(faturamento);
+                                lstCont[b++] = cnpj;
+                                b++;
                                 h++;
 
                                 break;
@@ -131,7 +123,7 @@ namespace lab_5._1_ex12
 
                                     if (ctbfisica[o].getNome() == nome5)
                                     {
-                                        Console.WriteLine(ctbfisica[o].getNome()+" "+ctbfisica[o].getCpf()+" "+ctbfisica[o].getEnd()+" "+ctbfisica[o].getSal());
+                                        Console.WriteLine(ctbfisica[o].getNome() + " " + ctbfisica[o].getCpf() + " " + ctbfisica[o].getEnd() + " " + ctbfisica[o].getSal());
                                     }
                                 }
                                 break;
@@ -183,10 +175,10 @@ namespace lab_5._1_ex12
                     case "5":
 
                         for (int o = 0; o < ctbfisica.Length; o++)
-                                {
-                                        Console.WriteLine(ctbfisica[o].getCpf()+" "+ctbfisica[o].getNome()+" "+ctbfisica[o].getEnd());
-                                    
-                                }
+                        {
+                            Console.WriteLine(ctbfisica[o].getCpf() + " " + ctbfisica[o].getNome() + " " + ctbfisica[o].getEnd());
+
+                        }
                         break;
                     case "6":
 
@@ -196,6 +188,7 @@ namespace lab_5._1_ex12
 
                         }
                         break;
+
                 }
                 Console.WriteLine("Alessandra Faria 573831");
                 Console.WriteLine("Menu");
@@ -207,7 +200,18 @@ namespace lab_5._1_ex12
                 Console.WriteLine("6. Imprimir uma relação dos contribuintes Pessoa Jurídica cadastrados, mostrando os dados: CNPJ, nome e endereço.");
                 Console.WriteLine("7. Sair do programa.");
                 opcao = Console.ReadLine();
+                Console.Clear();
             }
+            Console.WriteLine("digite o nome do arquivo para salvar os dados da operação");
+            nomeArq = Console.ReadLine();
+           // nomeArq = "C:/Users/Marcos/Desktop/poo/lab5/teste.txt";
+            FileInfo fi = new FileInfo(nomeArq);
+            StreamWriter saida = new StreamWriter(nomeArq); //abrir o arquivo para Escrita
+            for (int s = 0; s < lstCont.Length; s++)
+            {
+                saida.WriteLine(lstCont[s]);
+            }
+            saida.Close();
         }
 
     }
