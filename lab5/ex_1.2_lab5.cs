@@ -1,3 +1,29 @@
+//
+// nome do programa: Ex1.2_Lab5_s117p
+//
+// Desenvolvedores Alessandra Faria Abreu (573831) e Alaene Rufino de Sousa(478443)
+//Gustavo de Paula Ferreira (421769) Igor Santana (578919) Victor de souza resende (574116)
+// data: data:14/04/2017
+// entrada(s): O programa recebera a op√ß√£o escolhida no menu e os valores correspondentes 
+// saida(s): as saidas depedem da escolha feita no menu , no final da execu√ß√£o um arquivo.txt recebera os 
+//valores dos contribuintes
+// para executar  e testar digite: 
+//Ex1.2_Lab5_s117p.exe
+// descricao: 1-cadastra o Contribuinte como pf ou pj 
+//recebe os dados nome e endere√ßo (salvos em Contribuinte) faturament/salario e cpf/cnpj (salvo nas classes correspondentes)
+//2-faz o calculo de IR:
+//Pessoa Jur√≠dica
+//O imposto deve corresponder a 10% da renda bruta da empresa.
+//Pessoa F√≠sica
+//Renda Bruta Al√≠quota Parcela a Deduzir
+//R$ 0,00 a R$ 1.400,00 0% R$ 0,00
+//R$ 1.400,01 a R$ 2.100,00 10% R$ 100,00
+//R$ 2.100,01 a R$ 2.800,00 15% R$ 270,00
+//R$ 2.800,01 a R$ 3.600,00 25% R$ 500,00
+//R$ 3.600,01 ou mais 30% R$ 700,00
+//3-imprime o resultado na tela
+//ao finalizar o programa um arquivo txt salva os dados do contribuinte 
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,7 +36,7 @@ namespace lab_5._1_ex12
 
         static void Main(string[] args)
         {
-            const int MAXCONTRIBUINTES = 100; // n˙mero m·ximo de contas suportado
+            const int MAXCONTRIBUINTES = 100; // n√∫mero m√°ximo de contas suportado
             Contribuinte[] lst = new Contribuinte[MAXCONTRIBUINTES]; //vetor de contribuintes
             PFisica[] ctbfisica = new PFisica[MAXCONTRIBUINTES];
             PJuridica[] ctbjuricida = new PJuridica[MAXCONTRIBUINTES];
@@ -19,21 +45,21 @@ namespace lab_5._1_ex12
             string opcao, nomeArq, linha;
 
             Console.WriteLine("\t\tPONTIFICIA UNIVERSIDADE CATOLICA DE MINAS GERAIS");
-            Console.WriteLine("\t\t\t\tSistemas De InformaÁ„o");
+            Console.WriteLine("\t\t\t\tSistemas De Informa√ß√£o");
             Console.WriteLine("\t\t\tAtividade 1.2 - Ex12_Lab1_s117p");
-            Console.WriteLine("\t\tMatrÌcula: 478443 - Nome: Alaene Rufino de Sousa");
-            Console.WriteLine("\t\tMatrÌcula: 573831 - Nome: Alessandra Faria Abreu");
-            Console.WriteLine("\t\tMatrÌcula: 421769 - Nome: Gustavo de Paula Ferreira");
-            Console.WriteLine("\t\tMatrÌcula: 578919 - Nome: Igor Santana");
-            Console.WriteLine("\t\tMatrÌcula: 574116 - Nome: Victor de Souza Rezende");
+            Console.WriteLine("\t\tMatr√≠cula: 478443 - Nome: Alaene Rufino de Sousa");
+            Console.WriteLine("\t\tMatr√≠cula: 573831 - Nome: Alessandra Faria Abreu");
+            Console.WriteLine("\t\tMatr√≠cula: 421769 - Nome: Gustavo de Paula Ferreira");
+            Console.WriteLine("\t\tMatr√≠cula: 578919 - Nome: Igor Santana");
+            Console.WriteLine("\t\tMatr√≠cula: 574116 - Nome: Victor de Souza Rezende");
             Console.WriteLine("\t\t--------------------------------------------------");
             Console.WriteLine("Menu");
             Console.WriteLine("1. Incluir um contribuinte.");
             Console.WriteLine("2. Excluir um contribuinte.");
-            Console.WriteLine("3. Exibir os dados de um contribuinte: CPF/CNPJ, nome, endereÁo e salario/faturamento");
+            Console.WriteLine("3. Exibir os dados de um contribuinte: CPF/CNPJ, nome, endere√ßo e salario/faturamento");
             Console.WriteLine("4. Calcular e exibir o imposto a ser pago por um contribuinte.");
-            Console.WriteLine("5. Imprimir uma relaÁ„o dos contribuintes Pessoa FÌsica cadastrados, mostrando os dados:CPF, nome e endereÁo.");
-            Console.WriteLine("6. Imprimir uma relaÁ„o dos contribuintes Pessoa JurÌdica cadastrados, mostrando os dados: CNPJ, nome e endereÁo.");
+            Console.WriteLine("5. Imprimir uma rela√ß√£o dos contribuintes Pessoa F√≠sica cadastrados, mostrando os dados:CPF, nome e endere√ßo.");
+            Console.WriteLine("6. Imprimir uma rela√ß√£o dos contribuintes Pessoa Jur√≠dica cadastrados, mostrando os dados: CNPJ, nome e endere√ßo.");
             Console.WriteLine("7. Sair do programa.");
             opcao = Console.ReadLine();
             Console.Clear();
@@ -46,9 +72,9 @@ namespace lab_5._1_ex12
 
                         Console.WriteLine("Digite o nome do contrinuite");
                         string nome = Console.ReadLine();
-                        Console.WriteLine("Digite o EndereÁo do contrinuite");
-                        string endereÁo = Console.ReadLine();
-                        Console.WriteLine("O contribuite È pessoa fisica(1) ou juridica (2)?");
+                        Console.WriteLine("Digite o Endere√ßo do contrinuite");
+                        string endere√ßo = Console.ReadLine();
+                        Console.WriteLine("O contribuite √© pessoa fisica(1) ou juridica (2)?");
                         string op2 = Console.ReadLine();
                         switch (op2)
                         {
@@ -58,10 +84,10 @@ namespace lab_5._1_ex12
                                 double salario = Convert.ToDouble(Console.ReadLine());
                                 Console.WriteLine("qual o numero do cpf  do contribuinte");
                                 string cpf = Console.ReadLine();
-                                ctbfisica[k] = new PFisica(nome, endereÁo, salario, cpf);
+                                ctbfisica[k] = new PFisica(nome, endere√ßo, salario, cpf);
                                 lstCont[b] = "pf";
                                 lstCont[b++] = nome;
-                                lstCont[b++] = endereÁo;
+                                lstCont[b++] = endere√ßo;
                                 lstCont[b++] = Convert.ToString(salario);
                                 lstCont[b++] = cpf;
                                 b++;
@@ -74,10 +100,10 @@ namespace lab_5._1_ex12
                                 double faturamento = Convert.ToDouble(Console.ReadLine());
                                 Console.WriteLine("qual o numero do cnpj do contribuinte");
                                 string cnpj = Console.ReadLine();
-                                ctbjuricida[h] = new PJuridica(nome, endereÁo, faturamento, cnpj);
+                                ctbjuricida[h] = new PJuridica(nome, endere√ßo, faturamento, cnpj);
                                 lstCont[b] = "pj";
                                 lstCont[b++] = nome;
-                                lstCont[b++] = endereÁo;
+                                lstCont[b++] = endere√ßo;
                                 lstCont[b++] = Convert.ToString(faturamento);
                                 lstCont[b++] = cnpj;
                                 b++;
@@ -199,22 +225,22 @@ namespace lab_5._1_ex12
                 Console.WriteLine("Menu");
                 Console.WriteLine("1. Incluir um contribuinte.");
                 Console.WriteLine("2. Excluir um contribuinte.");
-                Console.WriteLine("3. Exibir os dados de um contribuinte: CPF/CNPJ, nome, endereÁo e salario/faturamento");
+                Console.WriteLine("3. Exibir os dados de um contribuinte: CPF/CNPJ, nome, endere√ßo e salario/faturamento");
                 Console.WriteLine("4. Calcular e exibir o imposto a ser pago por um contribuinte.");
-                Console.WriteLine("5. Imprimir uma relaÁ„o dos contribuintes Pessoa FÌsica cadastrados, mostrando os dados:CPF, nome e endereÁo.");
-                Console.WriteLine("6. Imprimir uma relaÁ„o dos contribuintes Pessoa JurÌdica cadastrados, mostrando os dados: CNPJ, nome e endereÁo.");
+                Console.WriteLine("5. Imprimir uma rela√ß√£o dos contribuintes Pessoa F√≠sica cadastrados, mostrando os dados:CPF, nome e endere√ßo.");
+                Console.WriteLine("6. Imprimir uma rela√ß√£o dos contribuintes Pessoa Jur√≠dica cadastrados, mostrando os dados: CNPJ, nome e endere√ßo.");
                 Console.WriteLine("7. Sair do programa.");
                 opcao = Console.ReadLine();
                 Console.Clear();
             }
-            Console.WriteLine("digite o nome do arquivo para salvar os dados da operaÁ„o");
+            Console.WriteLine("digite o nome do arquivo para salvar os dados da opera√ß√£o");
             nomeArq = Console.ReadLine();
             // nomeArq = "C:/Users/Marcos/Desktop/poo/lab5/teste.txt";
             FileInfo fi = new FileInfo(nomeArq);
             StreamWriter saida = new StreamWriter(nomeArq); //abrir o arquivo para Escrita
             for (int s = 0; s < lstCont.Length; s++)
             {
-                saida.WriteLine(lstCont[s]);
+                saida.Write(lstCont[s]);
             }
             saida.Close();
         }
