@@ -1,0 +1,150 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System;
+namespace ConsoleApplication33
+{
+    class Program
+    {
+        static Conta[] ChamaConta = new Conta[200];
+        static GeradorDeExtrato ChamaGerador;
+
+        static void Main(string[] args)
+        {
+            ContaCorrente[] contCorr = new ContaCorrente[100];
+            ContaPoupanca[] contPou = new ContaPoupanca[100];
+            //Conta[] ChamaConta = new Conta[200];
+            
+            int k = 0,h=0,b=0;
+            string opcao;
+
+            Console.WriteLine("\t\tPONTIFICIA UNIVERSIDADE CATOLICA DE MINAS GERAIS");
+            Console.WriteLine("\t\t\t\tSistemas De Informação");
+            Console.WriteLine("\t\t\tAtividade 1.2 - Ex12_Lab1_s117p");
+            Console.WriteLine("\t\tMatrícula: 478443 - Nome: Alaene Rufino de Sousa");
+            Console.WriteLine("\t\tMatrícula: 573831 - Nome: Alessandra Faria Abreu");
+            Console.WriteLine("\t\tMatrícula: 421769 - Nome: Gustavo de Paula Ferreira");
+            Console.WriteLine("\t\tMatrícula: 578919 - Nome: Igor Santana");
+            Console.WriteLine("\t\tMatrícula: 574116 - Nome: Victor de Souza Rezende");
+            Console.WriteLine("\t\t--------------------------------------------------");
+            Console.WriteLine("1. Adicionar conta.");
+            Console.WriteLine("2.  Depositar.");
+            Console.WriteLine("3.  Sacar.");
+            Console.WriteLine("4.  Extrato.");
+             opcao = Console.ReadLine();
+            Console.Clear();
+
+            while (opcao != "4")
+            {
+                switch (opcao)
+                {
+                    case "1":
+                        Console.WriteLine("Digite o nome do Titular");
+                        string nome = Console.ReadLine();
+                        Console.WriteLine("Conta corrente (1) conta Poupança (2 )");
+                        string op2 = Console.ReadLine();
+                        switch (op2)
+                        {
+                            case "1":
+                                Console.WriteLine("Conta corrente");
+                                Console.WriteLine("Qual o valor do Limite ?");
+                                double limite = Convert.ToDouble(Console.ReadLine());
+                                contCorr[k] = new ContaCorrente(nome, limite);
+                                ChamaConta[b] = contCorr[k];
+                                k++;
+                                break;
+                            case "2":
+                                Console.WriteLine("Conta Poupança");
+                                Console.WriteLine("Qual a data de aniverssario do titular?");
+                                double niver = Convert.ToDouble(Console.ReadLine());
+                                contPou[h] = new ContaPoupanca(nome, niver);
+                                ChamaConta[b] = contPou[h];
+                                h++;
+                                break;
+                                b++;
+                        }
+                                break;
+                    case "4":
+                        Console.WriteLine("Extrato");
+                        
+                                Console.WriteLine("Dite o Nome ");
+                                string nome4 = Console.ReadLine();
+                                for (int y = 0; y < contCorr.Length; y++)
+                                {
+                                    if (ChamaConta[y].getNome() == nome4)
+                                    {
+                                        ChamaGerador.ImprimeExtratoBasico(ChamaConta);
+                                    }
+                                }
+                        break;
+                      
+                }
+                Console.WriteLine("\t\t--------------------------------------------------");
+                Console.WriteLine("1. Adicionar conta.");
+                Console.WriteLine("2.  Depositar.");
+                Console.WriteLine("3.  Sacar.");
+                Console.WriteLine("4.  Extrato.");
+                opcao = Console.ReadLine();
+                Console.Clear();
+            }
+        }
+        }
+        class GeradorDeExtrato
+        {
+
+            public void ImprimeExtratoBasico(Conta[] c)
+            {
+                Console.WriteLine("Dite o Numero da conta ");
+                int numeroConta = Convert.ToInt32(Console.ReadLine());
+                DateTime agora = DateTime.Now;
+
+                string horario = String.Format(" {0: d/M/ yyyy HH:mm:ss}", agora);
+
+                System.Console.WriteLine(" DATA : " + horario);
+
+                System.Console.WriteLine(" SALDO : " + c[numeroConta].Saldo);
+
+            }
+
+        }
+        class Conta
+        {
+            protected string nome;
+            protected double saldo;
+            public string getNome()
+            {
+                return nome;
+            }
+
+            public double Saldo { set; get; }
+
+        }
+        class ContaPoupanca : Conta
+        {
+            protected double niver;
+            public ContaPoupanca(string nome, double niver)
+            {
+                base.nome = nome;
+                base.saldo = 0;
+                this.niver = niver;
+            }
+            public int DiaDoAniversario { get; set; }
+
+        }
+
+        class ContaCorrente : Conta
+        {
+            protected double limite;
+            public ContaCorrente( string nome ,double limite)
+            {
+                base.nome = nome;
+                base.saldo = 0;
+                this.limite = limite;
+            }
+
+            public double Limite { get; set; }
+
+        }
+    }
