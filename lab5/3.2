@@ -55,6 +55,8 @@ namespace ConsoleApplication33
                                 contCorr[k] = new ContaCorrente(nome, limite);
                                 ChamaConta[b] = contCorr[k];
                                 k++;
+                                Console.WriteLine("O número de acesso da conta é " + b);
+                                b++;
                                 break;
                             case "2":
                                 Console.WriteLine("Conta Poupança");
@@ -63,23 +65,26 @@ namespace ConsoleApplication33
                                 contPou[h] = new ContaPoupanca(nome, niver);
                                 ChamaConta[b] = contPou[h];
                                 h++;
-                                break;
+                                Console.WriteLine("O número de acesso da conta é " + b);
                                 b++;
+                                break;
+                                
+                               
                         }
                         break;
                     case "4":
                         Console.WriteLine("Extrato");
 
-                        Console.WriteLine("Dite o Nome ");
-                        string nome4 = Console.ReadLine();
-                        for (int y = 0; y < contCorr.Length; y++)
-                        {
-                            if (ChamaConta[y].getNome() == nome4)
-                            {
-                                ChamaContaN = ChamaConta[y];
+                        Console.WriteLine("Dite o Numero da conta ");
+                        int numero = Convert.ToInt32(Console.ReadLine());
+                        //for (int y = 0; y < contCorr.Length; y++)
+                        //{
+                        //    if (ChamaConta[y].getNome() == nome4)
+                        //    {
+                                ChamaContaN = ChamaConta[numero];
                                 ChamaGerador.ImprimeExtratoBasico(ChamaContaN);
-                            }
-                        }
+                        //    }
+                        //}
                         break;
 
                 }
