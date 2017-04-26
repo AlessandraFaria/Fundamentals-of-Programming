@@ -79,11 +79,26 @@ namespace ConsoleApplication33
                         numero = Convert.ToInt32(Console.ReadLine());
                         Console.WriteLine("Dite o Valor que quer depositar");
                         valor = Convert.ToDouble(Console.ReadLine());
-                        if (valor>0)
+                        if (ChamaConta[numero].getNome()==contCorr[numero].Nome())
+                        {
+                            if ((valor > 0)&&(valor<=contCorr[numero].Limite()))
+                            {
+                                ChamaConta[numero].Deposito(valor);
+                            }
+                            else
+                            {
+                                Console.WriteLine("Este valor esta acima do limite");
+                            }
+                        }
+                        else if (valor > 0)
                         {
                             ChamaConta[numero].Deposito(valor);
                         }
-                       
+                        else
+                        {
+                            Console.WriteLine("Este valor não é permitido");
+                        }
+
                         break;
                     case "3":
                         Console.WriteLine("Saque");
@@ -174,13 +189,21 @@ namespace ConsoleApplication33
     class ContaCorrente : Conta
     {
         protected double limite;
+        protected string nomeC;
         public ContaCorrente(string nome, double limite)
         {
             base.nome = nome;
+            nomeC = nome;
             this.limite = limite;
         }
 
-        public double Limite { get; set; }
-
+        public double Limite()
+        {
+            return limite;
+        }
+        public string Nome()
+        {
+            return nomeC;
+        }
     }
 }
