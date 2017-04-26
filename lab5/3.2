@@ -19,11 +19,13 @@ namespace ConsoleApplication33
             //Conta[] ChamaConta = new Conta[200];
 
             int k = 0, h = 0, b = 0;
+            int numero;
             string opcao;
+            double valor;
 
             Console.WriteLine("\t\tPONTIFICIA UNIVERSIDADE CATOLICA DE MINAS GERAIS");
             Console.WriteLine("\t\t\t\tSistemas De Informação");
-            Console.WriteLine("\t\t\tAtividade 3.2 - Ex12_Lab1_s117p");
+            Console.WriteLine("\t\t\tAtividade 3.2 - Ex32_Lab1_s117p");
             Console.WriteLine("\t\tMatrícula: 478443 - Nome: Alaene Rufino de Sousa");
             Console.WriteLine("\t\tMatrícula: 573831 - Nome: Alessandra Faria Abreu");
             Console.WriteLine("\t\tMatrícula: 421769 - Nome: Gustavo de Paula Ferreira");
@@ -68,23 +70,42 @@ namespace ConsoleApplication33
                                 Console.WriteLine("O número de acesso da conta é " + b);
                                 b++;
                                 break;
-                                
-                               
                         }
                         break;
+                    case "2":
+                        Console.WriteLine("Deposito");
+
+                        Console.WriteLine("Dite o Numero da conta ");
+                        numero = Convert.ToInt32(Console.ReadLine());
+                        Console.WriteLine("Dite o Valor que quer depositar");
+                        valor = Convert.ToDouble(Console.ReadLine());
+                        if (valor>0)
+                        {
+                            ChamaConta[numero].Deposito(valor);
+                        }
+                       
+                        break;
+                    case "3":
+                        Console.WriteLine("Saque");
+
+                        Console.WriteLine("Dite o Numero da conta ");
+                        numero = Convert.ToInt32(Console.ReadLine());
+                        Console.WriteLine("Dite o Valor que quer sacar");
+                        valor = Convert.ToDouble(Console.ReadLine());
+                        if (valor >= ChamaConta[numero].Saldo())
+                        {
+                            ChamaConta[numero].Saque(valor);
+                        }
+
+                        break;
+
                     case "4":
                         Console.WriteLine("Extrato");
 
                         Console.WriteLine("Dite o Numero da conta ");
-                        int numero = Convert.ToInt32(Console.ReadLine());
-                        //for (int y = 0; y < contCorr.Length; y++)
-                        //{
-                        //    if (ChamaConta[y].getNome() == nome4)
-                        //    {
-                                ChamaContaN = ChamaConta[numero];
-                                ChamaGerador.ImprimeExtratoBasico(ChamaContaN);
-                        //    }
-                        //}
+                         numero = Convert.ToInt32(Console.ReadLine());
+                        ChamaContaN = ChamaConta[numero];
+                        ChamaGerador.ImprimeExtratoBasico(ChamaContaN);
                         break;
 
                 }
@@ -109,7 +130,7 @@ namespace ConsoleApplication33
 
             System.Console.WriteLine(" DATA : " + horario);
 
-            System.Console.WriteLine(" SALDO : " + c.Saldo);
+            System.Console.WriteLine(" SALDO : " + c.Saldo());
 
         }
 
@@ -122,8 +143,20 @@ namespace ConsoleApplication33
         {
             return nome;
         }
-
-        public double Saldo { set; get; }
+        
+        public double Deposito(double valor)
+        {
+            saldo = saldo + valor;
+            return saldo;
+        }
+        public double Saque(double valor)
+        {
+            saldo = saldo - valor;
+            return saldo;
+        }
+        public double Saldo() {
+            return saldo;
+        }
 
     }
     class ContaPoupanca : Conta
@@ -132,7 +165,6 @@ namespace ConsoleApplication33
         public ContaPoupanca(string nome, double niver)
         {
             base.nome = nome;
-            base.saldo = 0;
             this.niver = niver;
         }
         public int DiaDoAniversario { get; set; }
@@ -145,7 +177,6 @@ namespace ConsoleApplication33
         public ContaCorrente(string nome, double limite)
         {
             base.nome = nome;
-            base.saldo = 0;
             this.limite = limite;
         }
 
