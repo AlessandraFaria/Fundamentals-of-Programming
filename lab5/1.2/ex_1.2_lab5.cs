@@ -4,18 +4,18 @@
 // Desenvolvedores Alessandra Faria Abreu (573831) e Alaene Rufino de Sousa(478443)
 //Gustavo de Paula Ferreira (421769) Igor Santana (578919) Victor de souza resende (574116)
 // data: data:14/04/2017
-// entrada(s): O programa recebera a opção escolhida no menu e os valores correspondentes 
-// saida(s): as saidas depedem da escolha feita no menu , no final da execução um arquivo.txt recebera os 
+// entrada(s): O programa recebera a opÃ§Ã£o escolhida no menu e os valores correspondentes 
+// saida(s): as saidas depedem da escolha feita no menu , no final da execuÃ§Ã£o um arquivo.txt recebera os 
 //valores dos contribuintes
 // para executar  e testar digite: 
 //Ex1.2_Lab5_s117p.exe
 // descricao: 1-cadastra o Contribuinte como pf ou pj 
-//recebe os dados nome e endereço (salvos em Contribuinte) faturament/salario e cpf/cnpj (salvo nas classes correspondentes)
+//recebe os dados nome e endereÃ§o (salvos em Contribuinte) faturament/salario e cpf/cnpj (salvo nas classes correspondentes)
 //2-faz o calculo de IR:
-//Pessoa Jurídica
+//Pessoa JurÃ­dica
 //O imposto deve corresponder a 10% da renda bruta da empresa.
-//Pessoa Física
-//Renda Bruta Alíquota Parcela a Deduzir
+//Pessoa FÃ­sica
+//Renda Bruta AlÃ­quota Parcela a Deduzir
 //R$ 0,00 a R$ 1.400,00 0% R$ 0,00
 //R$ 1.400,01 a R$ 2.100,00 10% R$ 100,00
 //R$ 2.100,01 a R$ 2.800,00 15% R$ 270,00
@@ -36,30 +36,30 @@ namespace lab_5._1_ex12
 
         static void Main(string[] args)
         {
-            const int MAXCONTRIBUINTES = 100; // número máximo de contas suportado
+            const int MAXCONTRIBUINTES = 100; // nÃºmero mÃ¡ximo de contas suportado
             Contribuinte[] lst = new Contribuinte[MAXCONTRIBUINTES]; //vetor de contribuintes
             PFisica[] ctbfisica = new PFisica[MAXCONTRIBUINTES];
             PJuridica[] ctbjuricida = new PJuridica[MAXCONTRIBUINTES];
             string[] lstCont = new string[MAXCONTRIBUINTES];
-            int j = 0, k = 0, h = 0, b = 0;
-            string opcao, nomeArq, linha;
+            int k = 0, h = 0, b = 0;
+            string opcao, nomeArq;
 
             Console.WriteLine("\t\tPONTIFICIA UNIVERSIDADE CATOLICA DE MINAS GERAIS");
-            Console.WriteLine("\t\t\t\tSistemas De Informação");
+            Console.WriteLine("\t\t\t\tSistemas De InformaÃ§Ã£o");
             Console.WriteLine("\t\t\tAtividade 1.2 - Ex12_Lab1_s117p");
-            Console.WriteLine("\t\tMatrícula: 478443 - Nome: Alaene Rufino de Sousa");
-            Console.WriteLine("\t\tMatrícula: 573831 - Nome: Alessandra Faria Abreu");
-            Console.WriteLine("\t\tMatrícula: 421769 - Nome: Gustavo de Paula Ferreira");
-            Console.WriteLine("\t\tMatrícula: 578919 - Nome: Igor Santana");
-            Console.WriteLine("\t\tMatrícula: 574116 - Nome: Victor de Souza Rezende");
+            Console.WriteLine("\t\tMatrÃ­cula: 478443 - Nome: Alaene Rufino de Sousa");
+            Console.WriteLine("\t\tMatrÃ­cula: 573831 - Nome: Alessandra Faria Abreu");
+            Console.WriteLine("\t\tMatrÃ­cula: 421769 - Nome: Gustavo de Paula Ferreira");
+            Console.WriteLine("\t\tMatrÃ­cula: 578919 - Nome: Igor Santana");
+            Console.WriteLine("\t\tMatrÃ­cula: 574116 - Nome: Victor de Souza Rezende");
             Console.WriteLine("\t\t--------------------------------------------------");
             Console.WriteLine("Menu");
             Console.WriteLine("1. Incluir um contribuinte.");
             Console.WriteLine("2. Excluir um contribuinte.");
-            Console.WriteLine("3. Exibir os dados de um contribuinte: CPF/CNPJ, nome, endereço e salario/faturamento");
+            Console.WriteLine("3. Exibir os dados de um contribuinte: CPF/CNPJ, nome, endereÃ§o e salario/faturamento");
             Console.WriteLine("4. Calcular e exibir o imposto a ser pago por um contribuinte.");
-            Console.WriteLine("5. Imprimir uma relação dos contribuintes Pessoa Física cadastrados, mostrando os dados:CPF, nome e endereço.");
-            Console.WriteLine("6. Imprimir uma relação dos contribuintes Pessoa Jurídica cadastrados, mostrando os dados: CNPJ, nome e endereço.");
+            Console.WriteLine("5. Imprimir uma relaÃ§Ã£o dos contribuintes Pessoa FÃ­sica cadastrados, mostrando os dados:CPF, nome e endereÃ§o.");
+            Console.WriteLine("6. Imprimir uma relaÃ§Ã£o dos contribuintes Pessoa JurÃ­dica cadastrados, mostrando os dados: CNPJ, nome e endereÃ§o.");
             Console.WriteLine("7. Sair do programa.");
             opcao = Console.ReadLine();
             Console.Clear();
@@ -72,9 +72,9 @@ namespace lab_5._1_ex12
 
                         Console.WriteLine("Digite o nome do contrinuite");
                         string nome = Console.ReadLine();
-                        Console.WriteLine("Digite o Endereço do contrinuite");
-                        string endereço = Console.ReadLine();
-                        Console.WriteLine("O contribuite é pessoa fisica(1) ou juridica (2)?");
+                        Console.WriteLine("Digite o EndereÃ§o do contrinuite");
+                        string endereÃ§o = Console.ReadLine();
+                        Console.WriteLine("O contribuite Ã© pessoa fisica(1) ou juridica (2)?");
                         string op2 = Console.ReadLine();
                         switch (op2)
                         {
@@ -84,10 +84,10 @@ namespace lab_5._1_ex12
                                 double salario = Convert.ToDouble(Console.ReadLine());
                                 Console.WriteLine("qual o numero do cpf  do contribuinte");
                                 string cpf = Console.ReadLine();
-                                ctbfisica[k] = new PFisica(nome, endereço, salario, cpf);
+                                ctbfisica[k] = new PFisica(nome, endereÃ§o, salario, cpf);
                                 lstCont[b] = "pf";
                                 lstCont[b++] = nome;
-                                lstCont[b++] = endereço;
+                                lstCont[b++] = endereÃ§o;
                                 lstCont[b++] = Convert.ToString(salario);
                                 lstCont[b++] = cpf;
                                 b++;
@@ -100,10 +100,10 @@ namespace lab_5._1_ex12
                                 double faturamento = Convert.ToDouble(Console.ReadLine());
                                 Console.WriteLine("qual o numero do cnpj do contribuinte");
                                 string cnpj = Console.ReadLine();
-                                ctbjuricida[h] = new PJuridica(nome, endereço, faturamento, cnpj);
+                                ctbjuricida[h] = new PJuridica(nome, endereÃ§o, faturamento, cnpj);
                                 lstCont[b] = "pj";
                                 lstCont[b++] = nome;
-                                lstCont[b++] = endereço;
+                                lstCont[b++] = endereÃ§o;
                                 lstCont[b++] = Convert.ToString(faturamento);
                                 lstCont[b++] = cnpj;
                                 b++;
@@ -155,6 +155,7 @@ namespace lab_5._1_ex12
                                     if (ctbfisica[o].getNome() == nome5)
                                     {
                                         Console.WriteLine(ctbfisica[o].getNome() + " " + ctbfisica[o].getCpf() + " " + ctbfisica[o].getEnd() + " " + ctbfisica[o].getSal());
+                                        break;
                                     }
                                 }
                                 break;
@@ -167,6 +168,7 @@ namespace lab_5._1_ex12
                                     if (ctbjuricida[o].getNome() == nome6)
                                     {
                                         Console.WriteLine(ctbjuricida[o].getNome() + " " + ctbjuricida[o].getCnpj() + " " + ctbjuricida[o].getEnd() + " " + ctbjuricida[o].getFat());
+                                        break;
                                     }
                                 }
                                 break;
@@ -186,6 +188,7 @@ namespace lab_5._1_ex12
                                     if (ctbfisica[o].getNome() == nome5)
                                     {
                                         Console.WriteLine(ctbfisica[o].calcImposto());
+                                        break;
                                     }
                                 }
                                 break;
@@ -198,6 +201,7 @@ namespace lab_5._1_ex12
                                     if (ctbjuricida[o].getNome() == nome6)
                                     {
                                         Console.WriteLine(ctbjuricida[o].getFat());
+                                        break;
                                     }
                                 }
                                 break;
@@ -208,7 +212,7 @@ namespace lab_5._1_ex12
                         for (int o = 0; o < ctbfisica.Length; o++)
                         {
                             Console.WriteLine(ctbfisica[o].getCpf() + " " + ctbfisica[o].getNome() + " " + ctbfisica[o].getEnd());
-
+                            break;
                         }
                         break;
                     case "6":
@@ -216,6 +220,7 @@ namespace lab_5._1_ex12
                         for (int p = 0; p < ctbjuricida.Length; p++)
                         {
                             Console.WriteLine(ctbjuricida[p].getCnpj() + " " + ctbjuricida[p].getNome() + " " + ctbjuricida[p].getEnd());
+                            break;
 
                         }
                         break;
@@ -225,22 +230,22 @@ namespace lab_5._1_ex12
                 Console.WriteLine("Menu");
                 Console.WriteLine("1. Incluir um contribuinte.");
                 Console.WriteLine("2. Excluir um contribuinte.");
-                Console.WriteLine("3. Exibir os dados de um contribuinte: CPF/CNPJ, nome, endereço e salario/faturamento");
+                Console.WriteLine("3. Exibir os dados de um contribuinte: CPF/CNPJ, nome, endereÃ§o e salario/faturamento");
                 Console.WriteLine("4. Calcular e exibir o imposto a ser pago por um contribuinte.");
-                Console.WriteLine("5. Imprimir uma relação dos contribuintes Pessoa Física cadastrados, mostrando os dados:CPF, nome e endereço.");
-                Console.WriteLine("6. Imprimir uma relação dos contribuintes Pessoa Jurídica cadastrados, mostrando os dados: CNPJ, nome e endereço.");
+                Console.WriteLine("5. Imprimir uma relaÃ§Ã£o dos contribuintes Pessoa FÃ­sica cadastrados, mostrando os dados:CPF, nome e endereÃ§o.");
+                Console.WriteLine("6. Imprimir uma relaÃ§Ã£o dos contribuintes Pessoa JurÃ­dica cadastrados, mostrando os dados: CNPJ, nome e endereÃ§o.");
                 Console.WriteLine("7. Sair do programa.");
                 opcao = Console.ReadLine();
                 Console.Clear();
             }
-            Console.WriteLine("digite o nome do arquivo para salvar os dados da operação");
+            Console.WriteLine("digite o nome do arquivo para salvar os dados da operaÃ§Ã£o");
             nomeArq = Console.ReadLine();
             // nomeArq = "C:/Users/Marcos/Desktop/poo/lab5/teste.txt";
             FileInfo fi = new FileInfo(nomeArq);
             StreamWriter saida = new StreamWriter(nomeArq); //abrir o arquivo para Escrita
             for (int s = 0; s < lstCont.Length; s++)
             {
-                saida.Write(lstCont[s]);
+                saida.Write(lstCont[s]+",");
             }
             saida.Close();
         }
@@ -290,19 +295,19 @@ namespace lab_5._1_ex12
             }
             else if ((salario > 1400) && (salario <= 2100))
             {
-                percentual = (salario * 0.1) - 100;
+                percentual = (salario * 0.1) ;
             }
             else if ((salario > 2100) && (salario <= 2800))
             {
-                percentual = (salario * 0.15) - 270;
+                percentual = (salario * 0.15) ;
             }
             else if ((salario > 2800) && (salario <= 3600))
             {
-                percentual = (salario * 0.25) - 500;
+                percentual = (salario * 0.25) ;
             }
             else
             {
-                percentual = (salario * 0.3) - 700;
+                percentual = (salario * 0.3) ;
             }
             return percentual;
         }
